@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "3c88bb19-7f14-4399-a482-0b15c4502da3",
+		"name": "人力资源管理",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登录",
+			"item": [
+				{
+					"name": "登录",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://182.92.81.159/api/sys/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "031f2817-06d4-4a97-ad62-46ef9039536a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"操作成功\");",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.code).to.eql(10000);",
+									"pm.test(\"Body is correct\", function () {",
+									"    pm.response.to.have.body({\"success\":true,\"code\":10000,\"message\":\"操作成功！\",\"data\":\"2e0ae0e4-34b7-45dc-9cf7-0aef5f6ac8d0\"});",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"});",
+									"});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"mobile\":\"13800000002\",\"password\":\"123456\"}"
+						},
+						"url": {
+							"raw": "http://182.92.81.159/api/sys/login",
+							"protocol": "http",
+							"host": [
+								"182",
+								"92",
+								"81",
+								"159"
+							],
+							"path": [
+								"api",
+								"sys",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/index.php?m=Home&c=User&a=do_login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "13488888888",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "verify_code",
+									"value": "8888",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/index.php?m=Home&c=User&a=do_login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "m",
+									"value": "Home"
+								},
+								{
+									"key": "c",
+									"value": "User"
+								},
+								{
+									"key": "a",
+									"value": "do_login"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://www.baidu.com/s?wd=postman",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://www.baidu.com/s?wd=postman",
+							"protocol": "http",
+							"host": [
+								"www",
+								"baidu",
+								"com"
+							],
+							"path": [
+								"s"
+							],
+							"query": [
+								{
+									"key": "wd",
+									"value": "postman"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "人员管理",
+			"item": [
+				{
+					"name": "管理",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
